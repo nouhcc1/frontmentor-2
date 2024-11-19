@@ -1,101 +1,65 @@
-import Image from "next/image";
-
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const NavList = [
+    { step: 1, name: "Your info" },
+    { step: 2, name: "Select plan" },
+    { step: 3, name: "Add-ons" },
+    { step: 4, name: "Summary" }
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (//  max-h-[600px] min-w-[630px]
+    <div className="grid items-center justify-items-center min-h-screen font-ubuntu font-normal bg-prMagnolia">
+      <div className="p-4 grid  xl:max-w-6xl xl:w-3/4 rounded-2xl bg-opacity-0 xl:bg-prWhite xl:shadow-xl xl:grid-cols-3">
+        <div className="fixed top-0 -right-4 -left-4 xl:right-0 xl:left-0 h-2/5 xl:h-auto xl:relative col-span-1 bg-[url('/assets/images/bg-sidebar-desktop.svg')] xl:rounded-xl bg-cover bg-bottom xl:bg-center">
+          <ol className="grid grid-flow-col xl:grid-flow-row justify-center pt-12 gap-4 xl:p-8 xl:gap-8 ">
+            {NavList.map((item) => (
+              <li key={item.step} className="grid xl:grid-cols-4 items-center xl:gap-8">
+                <h1 className=" w-10 h-10 text-lg xl:col-span-1 grid justify-center items-center border border-prWhite rounded-full xl:w-16 xl:h-16 xl:text-3xl ">{item.step}</h1>
+                <div className="col-span-3 hidden xl:block">
+                  <h6 className="font-ubuntu font-normal text-xs uppercase text-prCoolgray xl:text-xl">step {item.step}</h6> 
+                  <h1  className="font-ubuntu font-bold text-sm uppercase  xl:text-xl" >{item.name}</h1>
+                </div>
+                
+              </li>
+            ))}
+          </ol>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="col-span-2  grid z-10 grid-rows-4 pt-8 xl:pt-12 bg-prWhite rounded-lg">
+          <div className="grid row-span-3 px-4 content-start gap-8 xl:gap-12">
+            <div>
+              <h1 className="text-prarineblue text-2xl font-bold font-ubuntu xl:text-5xl">Personal info</h1>
+              <p className="text-prCoolgray text-sm xl:text-2xl line-clamp-1">please provide your name, email address,and phone number.</p>
+            </div>
+            <div>
+              <span className="block text-sm font-medium text-prarineblue font-ubuntu xl:text-2xl">Name</span>
+              <input type="text" value="eg. stephen king" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm text-prCoolgray xl:text-xl"/>
+            </div>
+            <div>
+              <span className="block text-sm font-medium text-prarineblue font-ubuntu xl:text-2xl">Email Address</span>
+              <input type="text" value="eg. stephenking@lorem.com" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm text-prCoolgray xl:text-xl"/>
+            </div>
+            <div>
+              <span className="block text-sm font-medium text-prarineblue font-ubuntu xl:text-2xl">Phone Number</span>
+              <input type="text" value="eg. +1 234 567 890" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm  text-prCoolgray xl:text-xl"/>
+            </div>
+          </div>
+          <div className="fixed bottom-0 right-0 left-0 xl:relative p-4  w-full grid grid-flow-col justify-between xl:justify-end xl:items-end bg-white">
+            <button className="text-md font-medium text-prCoolgray font-ubuntu px-6 py-2 xl:text-xl xl:px-8 xl:py-4 xl:rounded-lg xl:hidden">
+                Go Back
+              </button>
+            <button className="text-md font-medium text-prWhite font-ubuntu bg-prarineblue border rounded-md px-6 py-2 xl:text-xl xl:px-8 xl:py-4 xl:rounded-lg">
+              Next Step
+            </button>
+          </div>
+          
+        </div>
+      </div>
     </div>
   );
 }
+/**
+ focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+            disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+            invalid:border-pink-500 invalid:text-pink-600
+            focus:invalid:border-pink-500 focus:invalid:ring-pink-500
+
+*/
