@@ -8,7 +8,11 @@ import { useStep } from './StepContext';
 const schema = z.object({
   name: z.string().min(3, { message: 'Name is required' }),
   email: z.string().email({ message: 'Invalid email address' }),
-  phoneNumber: z.number().min(10, { message: 'Phone number is required' }),
+  phoneNumber: z
+  .string()
+  .regex(/^\d+$/, { message: 'Phone number must contain only digits' }) // Ensure it's numeric
+  .min(10, { message: 'Phone number must be at least 10 digits' })
+  .transform((value) => parseInt(value, 10)),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -60,7 +64,7 @@ export default function StepOne() {
         <Controller
           name="phoneNumber"
           control={control}
-          render={({ field }) => <input {...field} type="text" placeholder="eg. +1 234 567 890" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm text-prCoolgray xl:text-xl" />}
+          render={({ field }) => <input {...field} type="string" placeholder="eg. +1 234 567 890" className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm text-prCoolgray xl:text-xl" />}
         />
         {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
       </div>
