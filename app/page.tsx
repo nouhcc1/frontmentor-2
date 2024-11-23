@@ -1,23 +1,34 @@
-import Steper from "./components/steper";
+"use client"
+import React from 'react';
+import { StepProvider } from './components/StepContext';
+import Steper from './components/steper';
+import StepOne from './components/StepOne';
+
+const navList = [
+  {
+    name: "Your info",
+    form: <StepOne />,
+  },
+  {
+    name:  "Select plan",
+    form: <div><StepOne /></div>,
+  },
+  {
+    name: "Add-ons",
+    form: <div>Step 3 Content</div>,
+  },
+  {
+    name: "Summary",
+    form: <div>Step 4 Content</div>,
+  },
+];
 
 export default function Home() {
-  const NavList = [
-    { step: 1, name: "Your info" },
-    { step: 2, name: "Select plan" },
-    { step: 3, name: "Add-ons" },
-    { step: 4, name: "Summary" }
-  ];
-
   return (
-    <div className="grid items-center justify-items-center min-h-screen font-ubuntu font-normal bg-prMagnolia">
-        <Steper navList={NavList}></Steper>
-    </div>
+    <StepProvider>
+      <div className="grid items-center justify-items-center min-h-screen font-ubuntu font-normal bg-prMagnolia">
+        <Steper navList={navList} />
+      </div>
+    </StepProvider>
   );
 }
-/**
- focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-            disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-            invalid:border-pink-500 invalid:text-pink-600
-            focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-
-*/
